@@ -43,7 +43,7 @@ module.exports = {
 				test: /\.(png|jpg)$/,
 				loader: 'url-loader',
 				options:{
-					limit: '1024',
+					limit: '10240',
 					name: '[path][name].[ext]',
 				}
 			}
@@ -53,7 +53,10 @@ module.exports = {
         extensions: [
             '.js',
             '.vue'
-        ]
+        ],
+        alias: {
+        	'@': resolve(__dirname,'static/images/'),
+        }
     },
 	devServer: {
 		contentBase: join(__dirname, 'build'),
@@ -64,7 +67,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			filename: 'index.html', 
+			filename: 'index.html',
 			template: 'index.html',
 			inject: 'body',
 			hash:false

@@ -1,43 +1,25 @@
 <template>
-	<div class="header-div" @click="test" :style="{width: head_width}">
-		<div class="header-bk" :style="{backgroundImage: 'url('+header_bk_img+')'}"></div>
-		<Logo class='mylogo' ></Logo>
-		<SearchInput></SearchInput>
+	<div class="header-div" @click="test" :style="{backgroundImage: 'url('+header_bk_img_path+')'}">
+		<HeaderContent class="header-content"></HeaderContent>
 	</div>
 </template>
 
 <script>
-	import SearchInput from '../common/search_input.vue';
-	import Logo from '../header/logo.vue';
-	import { mapState, mapGetters } from 'vuex';
+	import HeaderContent from './header_content';
+	import { mapState } from 'vuex';
 	const { resolve, join } = require('path');
 
 	export default{
 		components:{
-			Logo,
-			SearchInput
+			HeaderContent
 		},
-		computed: Object.assign({}, mapState({
-			head_width: (state) => {
-				return state.styleStore.head_width;
-			},
-			header_bk_img: (state) => {
-				//console.log(state.styleStore.getImgPath);
-				var a = '../../../static/images/';
-				var name = 'images/head-bk.png';
-				var path='../../../static/images/head-bk.png';
-				const req = require.context('../../../static/images/', true, /\.png/);
-				return path;
-				// return req(name);
-				//console.log(require(`../../../static/${name}`));
-				//return require(`${path}`);
-				//return require(path);
-				// return require(`../../../static/images/${name}`);
+		computed: mapState({
+			header_bk_img_path: function(state){
+				return state.resourceStore.img_head_bk;
 			}
-		}),mapGetters(['getImgPath'])),
+		}),
 		data: () => {
 			return {
-				tt:'4444333222',
 			}
 		},
 		methods: {
@@ -50,14 +32,13 @@
 </script>
 
 <style scoped>
-	.header-bk{
+	.header-div{
 	    background-size: 100% 100%;
 	    height: 150px;
-	    position: absolute;
 	    width: 100%;
-	    z-index: -1;
 	}
-	.header-div{
+	.header-content{
 		margin: auto;
+		padding-top: 30px;
 	}
 </style>
