@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import getters from '../getters/resource_path_getter';
 
 Vue.use(Vuex);
 
@@ -10,5 +11,6 @@ const state = {
 	img_search_ico: require('../../../static/images/search_ico.png'),
 }
 export default{
-	state
+	state,
+	getters,
 }

@@ -1,32 +1,24 @@
 <template>
-	<div class="header-div" @click="test" :style="{backgroundImage: 'url('+header_bk_img_path+')'}">
+	<div class="header-div" :style="{backgroundImage: 'url('+imgHeaderBk+')'}">
 		<HeaderContent class="header-content"></HeaderContent>
 	</div>
 </template>
 
 <script>
 	import HeaderContent from './header_content';
-	import { mapState } from 'vuex';
+	import { mapGetters } from 'vuex';
 	const { resolve, join } = require('path');
 
 	export default{
 		components:{
 			HeaderContent
 		},
-		computed: mapState({
-			header_bk_img_path: function(state){
-				return state.resourceStore.img_head_bk;
-			}
-		}),
+		computed: mapGetters(['imgHeaderBk']),
 		data: () => {
 			return {
 			}
 		},
 		methods: {
-			test: function(){
-				console.log('4444');
-				console.log(this.getImgPath);
-			}
 		}
 	}
 </script>
@@ -39,6 +31,6 @@
 	}
 	.header-content{
 		margin: auto;
-		padding-top: 30px;
+		padding-top: 33px;
 	}
 </style>

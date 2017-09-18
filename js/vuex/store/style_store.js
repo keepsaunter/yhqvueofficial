@@ -9,7 +9,7 @@ const default_content_width = '1200px';
 const default_image_root_path = '../../../static/images/';
 
 const state = {
-	head_width: default_content_width,
+	head_content_width: default_content_width,
 	image_root_path: default_image_root_path,
 }
 export default{

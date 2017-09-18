@@ -12,6 +12,7 @@
   "dependencies": {
     "es2015": "^0.0.0",
     "vue": "^2.4.2",
+    "vue-router": "^2.7.0",
     "vuex": "^2.3.1"
   },
   "devDependencies": {

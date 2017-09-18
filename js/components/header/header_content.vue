@@ -1,31 +1,32 @@
 <template>
-	<div class="header-content" :style="{width: head_width}">
+	<div class="header-content" :style="{width: headContentWidth}">
 		<Logo class='logo' ></Logo>
 		<SearchInput class='search-input'></SearchInput>
+		<NavigationBar :navigationBarData="navigationBarData" type='horizontal'></NavigationBar>
 	</div>
 </template>
 
 <script>
-	import SearchInput from '../common/search_input.vue';
-	import Logo from '../header/logo.vue';
-	import { mapState } from 'vuex';
+	import SearchInput from '../common/search_input';
+	import Logo from '../header/logo';
+	import NavigationBar from '../catalog'
+	import { mapGetters } from 'vuex';
 	const { resolve, join } = require('path');
 
 	export default{
 		components:{
 			Logo,
-			SearchInput
+			SearchInput,
+			NavigationBar,
 		},
 		data: () => {
 			return{
-
 			}
 		},
-		computed: mapState({
-			head_width: (state) => {
-				return state.styleStore.head_width;
-			},
-		}),
+		computed: mapGetters([
+			'navigationBarData',
+			'headContentWidth',
+		]),
 		methods: {
 		}
 	}
