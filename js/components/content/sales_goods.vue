@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<GoodsList :goods_data="recomment_goods" :style="{width:headContentWidth}" class="goods-list-content"></GoodsList>
+		<GoodsList :goods_data="sales_goods" :style="{width:headContentWidth}" class="goods-list-content" type="has_rank"></GoodsList>
 	</div>
 </template>
 <script>
@@ -10,10 +10,10 @@
 		components:{
 			GoodsList,
 		},
-		computed: mapGetters(['headContentWidth', 'recomment_goods']),
+		computed: mapGetters(['headContentWidth', 'sales_goods']),
 		created: function(){
-			this.$store.dispatch('navClick', 0);
-			this.$store.dispatch('getRecommentGoods');
+			this.$store.dispatch('navClick', 3);
+			this.$store.dispatch('getSalesGoods');
 		},
 	}
 </script>

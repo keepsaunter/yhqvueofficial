@@ -9,6 +9,9 @@
 	export default{
 		components:{
 			GoodsList,
-		}
+		},
+		created: function(){
+			this.$store.dispatch('navClick', 1);
+		},
 	}
 </script>

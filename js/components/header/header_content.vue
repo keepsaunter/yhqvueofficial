@@ -9,7 +9,7 @@
 <script>
 	import SearchInput from '../common/search_input';
 	import Logo from '../header/logo';
-	import NavigationBar from '../catalog'
+	import NavigationBar from '../navigation'
 	import { mapGetters } from 'vuex';
 	const { resolve, join } = require('path');
 

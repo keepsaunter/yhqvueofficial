@@ -1,22 +1,22 @@
 <template>
 	<div>
-		{{recommendGoods}}
-		<GoodsItem></GoodsItem>
+		<GoodsItem v-for="(goods, index) in goods_data" :goods_data="goods" :type="type" :ele_index="index"></GoodsItem>
 	</div>
 </template>
 <script>
-	import { mapGetters } from 'vuex';
 	import GoodsItem from './goods_item';
 	export default {
-		computed: mapGetters(['recommendGoods']),
+		props: {
+			goods_data:{},
+			type: {
+				default: 'no_rank',
+			}
+		},
 		components: {
 			GoodsItem,
 		},
 		methods:{
-			fudianji: function(){
-				console.log(this.tp.tt);
-				console.log(this.tp.th);
-			}
+
 		}
 	}
 </script>

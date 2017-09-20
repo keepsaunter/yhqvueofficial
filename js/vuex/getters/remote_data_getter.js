@@ -1,10 +1,5 @@
-import axios from 'axios';
 export default {
-	recommendGoods: state =>{
-		console.log("recommendGoods");
-		axios.get('http://www.fanqianzhushou.com/tj/day.htm')
-			.then(function(response){
-				console.log(response);
-			})
-	}
+	recomment_goods: state => state.recomment_goods,
+	popularity_goods: state => state.popularity_goods,
+	sales_goods: state => state.sales_goods,
 }

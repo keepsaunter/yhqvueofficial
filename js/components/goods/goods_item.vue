@@ -1,21 +1,23 @@
 <template>
 	<div class="goods-item">
-		<a class="goods-img" target="_blank" >
-			<img style="width240px;height:240px;" src="https://img.alicdn.com/imgextra/i1/2142000223/TB2bo0odRUSMeJjy1zkXXaWmpXa_!!2142000223.jpg">
+		<a class="goods-img" target="_blank" :href="goods_data.mobileCouponURL">
+			<div v-if="type==='has_rank'" class="rank-show-div">TOP{{ele_index+1}}</div>
+			<img style="width240px;height:240px;" :src="goods_data.imageUrl">
 		</a>
+		
 		<div class="goods-detail">
-			<a class="goods-tt">童装女童秋装套装2017新款春秋洋气运动女大童休闲韩版儿童三件套</a>
+			<a class="goods-tt" target="_blank" :href="goods_data.mobileCouponURL">{{goods_data.title}}</a>
 			<div style="margin:15px 0;position:relative;">
 				<span class="goods-price">淘宝价：
-					<em>¥118.0</em>
+					<em>¥{{goods_data.originalPriceYuan}}</em>
 				</span>
-				<span class="goods-salecount">已售：187</span>
+				<span class="goods-salecount">已售：{{goods_data.soldCountStr}}</span>
 			</div>
 			<div style="position:relative;">
 				<span class="goods-coupon-price">优惠券
-					<div>30元</div>
+					<div>{{goods_data.coupon}}元</div>
 				</span>
-				<a class="goods-coupon-href" target="_blank">领券购买</a>
+				<a class="goods-coupon-href" target="_blank" :href="goods_data.mobileCouponURL">领券购买</a>
 			</div>
 		</div>
 	</div>
@@ -23,6 +25,10 @@
 <script>
 	export default {
 		props: {
+			type: {},
+			ele_index: {
+				default: 0,
+			},
 			goods_data: {
 				type: Object,
 				default: ()=>{
@@ -51,11 +57,24 @@
 	    height: 380px;
 	    margin: 0 14px;
 	    margin-bottom: 20px;
+	    a{
+	    	text-decoration: none;
+	    	color: black;
+	    }
 	    .goods-img{
 	    	display: block;
 		    margin: auto;
 		    width: 240px;
 		    height: 240px;
+	    }
+	    .rank-show-div{
+	        width: 80px;
+	        background-color: black;
+		    color: white;
+		    line-height: 30px;
+		    font-size: 20px;
+		    position: absolute;
+		    text-align: center;
 	    }
 	    .goods-detail {
 		    padding: 2px 0;
@@ -69,6 +88,9 @@
 		    font-size: 16px;
 		    overflow: hidden;
 		    display: block;
+		}
+		.goods-price{
+			vertical-align: -webkit-baseline-middle;
 		}
 		.goods-salecount {
 		    color: #868686;

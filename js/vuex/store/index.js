@@ -1,14 +1,21 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
+
 import styleStore from './style_store';
 import resourceStore from './resource_path_store';
 import staticDataStore from './static_data_store';
 import remoteDataStore from './remote_data_store';
 
-import getters from '../getters/index'
+import getters from '../getters';
+import mutations from '../mutations';
+import actions from '../actions';
+
+Vue.prototype.axios = axios;
 
 Vue.use(Vuex);
 const state = {
+	navigation_checked: 0,
 }
 export default new Vuex.Store({
 	modules:{
@@ -18,5 +25,7 @@ export default new Vuex.Store({
 		remoteDataStore,
 	},
 	state,
-	getters
+	getters,
+	mutations,
+	actions,
 })

@@ -1,26 +1,21 @@
 <template>
 	<div>
 		<ul>
-			<Liitem @click.native="test" :class="'liitem'+' '+(index===0?'active':'')" :style="type=='horizontal'?'float:left;margin:0 10px;':''" v-for="(navigation_bar, index) in navigationBarData">{{navigation_bar}}</Liitem>
+			<Liitem @click.native="checkedChange(index)" :class="'liitem'+' '+(index===navigation_checked?'active':'')" :style="type=='horizontal'?'float:left;margin:0 10px;':''" v-for="(navigation_bar, index) in navigationBarData" :link_data="navigation_bar"></Liitem>
 		</ul>
 	</div>
 </template>
 <script>
+	import { mapState } from 'vuex';
 	import Liitem from './liitem';
 	export default {
 		props: ['navigationBarData', 'type'],
-		data: () => {
-			return {
-				catalogs:[ 1, 2, 3]
-			}
-		},
 		components: {
 			Liitem,
 		},
+		computed: mapState(['navigation_checked']),
 		methods:{
-			test: function(){
-				console.log('333');
-				console.log(this);
+			checkedChange: function(index){
 			}
 		},
 	}
