@@ -2,7 +2,7 @@
 	<div class="header-content" :style="{width: headContentWidth}">
 		<Logo class='logo' ></Logo>
 		<SearchInput class='search-input'></SearchInput>
-		<NavigationBar :navigationBarData="navigationBarData" type='horizontal'></NavigationBar>
+		<NavigationBar class="navigation-bar" :navigationBarData="navigationBarData" type='horizontal'></NavigationBar>
 	</div>
 </template>
 
@@ -11,7 +11,6 @@
 	import Logo from '../header/logo';
 	import NavigationBar from '../navigation'
 	import { mapGetters } from 'vuex';
-	const { resolve, join } = require('path');
 
 	export default{
 		components:{
@@ -26,9 +25,7 @@
 		computed: mapGetters([
 			'navigationBarData',
 			'headContentWidth',
-		]),
-		methods: {
-		}
+		])
 	}
 </script>
 
@@ -41,5 +38,8 @@
 		float: right;
     	right: 12.4%;
     	top: 18px;
+	}
+	.navigation-bar{
+		margin-left: -18px;
 	}
 </style>

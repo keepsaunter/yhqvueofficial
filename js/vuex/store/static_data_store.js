@@ -13,6 +13,7 @@ const state = {
 		{ title: '软件下载', path: '/download'},
 	],
 	page_size: 100,
+	scroll_animation_device: 80,
 }
 export default {
 	state,

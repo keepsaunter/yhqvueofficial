@@ -31,7 +31,7 @@
 		cursor: pointer;
 		color: #fff;
 		text-align: center;
-		&.active::after{
+		&.active::after,&:hover::after{
 			width: 100%;
 		}
 		&::after{

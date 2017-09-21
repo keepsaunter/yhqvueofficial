@@ -8,12 +8,16 @@ Vue.use(Vuex);
 
 const state = {
 	recomment_goods: [],
+	all_goods: [],
 	popularity_goods: [],
 	sales_goods: [],
+	catalogs: [],
 	remote_server_root: 'http://www.fanqianzhushou.com',
 	remote_recomment_path: '/tj/day.htm',
 	remote_popularity_path: '/tj/rqph.htm',
 	remote_sales_path: '/tj/sspd.htm',
+	remote_all_goods_path: '/item/cjqCateItems.htm',
+	remote_catelogs_path: '/item/listAllCjqCate.htm',
 }
 export default {
 	state,
