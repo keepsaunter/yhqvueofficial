@@ -13,5 +13,8 @@ export default {
 	},
 	updateCatalogs: (state, newData) => {
 		state.catalogs = newData;
+	},
+	updateSearchGoods: (state, newData) => {
+		state.search_goods = newData;
 	}
 }

@@ -9,13 +9,13 @@
 			<a class="goods-tt" target="_blank" :href="goods_data.mobileCouponURL">{{goods_data.title}}</a>
 			<div style="margin:15px 0;position:relative;">
 				<span class="goods-price">淘宝价：
-					<em>¥{{goods_data.originalPriceYuan}}</em>
+					<em style="font-style:normal;font-size:20px;color:#333;font-weight:700;">¥{{goods_data.originalPriceYuan||goods_data.priceYuan}}</em>
 				</span>
 				<span class="goods-salecount">已售：{{goods_data.soldCountStr}}</span>
 			</div>
 			<div style="position:relative;">
 				<span class="goods-coupon-price">优惠券
-					<div>{{goods_data.coupon}}元</div>
+					<div>{{parseInt(goods_data.coupon / 100)}}元</div>
 				</span>
 				<a class="goods-coupon-href" target="_blank" :href="goods_data.mobileCouponURL">领券购买</a>
 			</div>
@@ -41,8 +41,8 @@
 						coupon: '',
 					}
 				}
-			}
-		}
+			},
+		},
 	}
 </script>
 <style scoped lang="sass">

@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<FirstCatalog class='first-catalog' :data="catalogs" @checkedChange="firCheckedChange" :checked="first_catalog_checked"></FirstCatalog>
-		<GoodsList :goods_data="all_goods" :style="{width:headContentWidth}" class="goods-list-content"></GoodsList>
-		<SecondCatalog class='second-catalog' type='vertical' :data="catalogs[first_catalog_checked]?catalogs[first_catalog_checked].childCates:[]" @checkedChange="secCheckedChange" :checked="second_catalog_checked"></SecondCatalog>
+		<FirstCatalog :style="firset_cata_isFixed ? {position:'fixed',top: '0px'}:{}" class='first-catalog' :data="catalogs" @checkedChange="firCheckedChange" :checked="first_catalog_checked"></FirstCatalog>
+		<GoodsList :goods_data="all_goods" :style="{marginTop: (firset_cata_isFixed ? (parseInt(goodsContentMarginTop)+40+'px'): goodsContentMarginTop),width:headContentWidth}" class="goods-list-content"></GoodsList>
+		<SecondCatalog v-show="catalogs[first_catalog_checked]&&catalogs[first_catalog_checked].childCates.length>0" class='second-catalog' type='vertical' :data="catalogs[first_catalog_checked]?catalogs[first_catalog_checked].childCates:[]" @checkedChange="secCheckedChange" :checked="second_catalog_checked"></SecondCatalog>
 	</div>
 </template>
 <script>
@@ -15,10 +15,26 @@
 			FirstCatalog: Catalog,
 			SecondCatalog: Catalog,
 		},
-		computed: Object.assign({}, mapGetters(['headContentWidth', 'catalogs', 'all_goods']),mapState(['first_catalog_checked', 'second_catalog_checked'])),
+		data: () => {
+			return {
+				firset_cata_isFixed: false,
+			}
+		},
+		computed: Object.assign({}, mapGetters(['headContentWidth', 'catalogs', 'all_goods', 'goodsContentMarginTop']),mapState(['first_catalog_checked', 'second_catalog_checked'])),
 		created: function(){
 			this.$store.dispatch('navClick', 1);
 			this.$store.dispatch('getCatalogs');
+		},
+		mounted: function(){
+			let self = this;
+			window.addEventListener('scroll', function(){
+				let top_dis = document.body.scrollTop || document.documentElement.scrollTop;
+				if(top_dis >= 150){
+					self.firset_cata_isFixed = true;
+				}else{
+					self.firset_cata_isFixed = false;
+				}
+			});
 		},
 		methods: {
 			firCheckedChange: function(keyId, index){
@@ -39,10 +55,11 @@
 <style scoped>
 	.goods-list-content{
 		margin: auto;
-		margin-top: 20px;
 	}
 	.first-catalog{
 		background-color:#F8F8F7;
+		width: 100%;
+		z-index: 88;
 	}
 	.second-catalog{
 		width: 86px;

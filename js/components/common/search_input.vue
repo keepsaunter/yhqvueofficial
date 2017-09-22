@@ -1,22 +1,31 @@
 <template>
 	<div class="sch-input-group" style="width:600px">
-		<img :src="img_search_ico" class="search-ico">
-	    <input type="text" value="搜索淘宝隐藏优惠券" placeholder="搜索淘宝隐藏优惠券" class="sch-input">
-	    <div class="sch-input-btn">搜索</div>
+		<img :src="imgSearchIco" class="search-ico">
+	    <input ref="sch_input" @keyup.enter="searchBtnClick" type="text" v-model="search_input_val" placeholder="搜索淘宝隐藏优惠券" class="sch-input">
+	    <div @click="searchBtnClick" class="sch-input-btn">搜索</div>
 	</div>
 </template>
 
 <script>
-	import { mapState } from 'vuex';
+	import { mapState, mapGetters } from 'vuex';
 	export default{
-		data: function(){
-			return {};
-		},
-		computed: mapState({
-			img_search_ico: (state) => {
-				return state.resourceStore.img_search_ico;
+		computed: {
+			...mapGetters(['imgSearchIco']),
+			search_input_val: {
+				get: function(){
+					return this.$store.state.search_input_val;
+				},
+				set: function(newval){
+					this.$store.state.search_input_val = newval;
+				}
 			}
-		})
+		},
+		methods: {
+			searchBtnClick: function(){
+				this.$router.push('/search');
+				this.$store.dispatch('getSearchGoods');
+			}
+		}
 	}
 </script>
 

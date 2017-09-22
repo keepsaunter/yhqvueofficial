@@ -18,6 +18,7 @@ const state = {
 	navigation_checked: 0,
 	first_catalog_checked: 0,
 	second_catalog_checked: -1,
+	search_input_val: '',
 }
 export default new Vuex.Store({
 	modules:{

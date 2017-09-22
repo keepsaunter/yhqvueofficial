@@ -10,6 +10,7 @@ const state = {
 	img_logo: require('../../../static/images/logo.png'),
 	img_search_ico: require('../../../static/images/search_ico.png'),
 	img_scroll_top: require('../../../static/images/scroll_top.png'),
+	img_default_goods: require('../../../static/images/default_goods_img.jpg'),
 }
 export default{
 	state,
